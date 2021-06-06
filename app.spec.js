@@ -57,16 +57,11 @@ test('update person', () => {
     })
 });
 
-test('update person', () => {
+test('delete person', () => {
     db.serialize(async () => {
         seedDb(db);
-        await request(app)
-            .put('/1')
-            .send({ name: 'Joe', age: 2 });
-        const res = await request(app).get('/');
-        const response = [
-            { name: 'Jane', id: 1, age: 1 }
-        ]
+        const res = await request(app).delete('/1');
+        const response = [];
         expect(res.status).toBe(200);
         expect(res.body).toEqual(response);
     })
